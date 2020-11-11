@@ -10,82 +10,170 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-function addManager(){
-    inquirer.prompt([
+let employees = [];
+let manager, engineer, intern;
+
+function addManager() {
+    inquirer
+        .prompt([
             {
                 type: "input",
-                message: "What is your office number?",
-                name: "office number"
+                message: "What is this Manager's name?",
+                name: "name",
             },
-    ])
-    }
-
-function addEngineer(){
-    inquirer.prompt([
             {
                 type: "input",
-                message: "What is your GitHub username?",
-                name: "gitHub username"
+                message: "What is this Manager's employee ID?",
+                name: "id",
             },
-    ])
-    }
-
-function addIntern(){
-    inquirer.prompt([
             {
                 type: "input",
-                message: "Which school are you currently attending or what was the last school you attended before you started the internship?",
-                name: "school name"
+                message: "What is this Manager's email address?",
+                name: "email",
             },
-    ])
-    }
+            {
+                type: "input",
+                message: "What is this Manager's office number?",
+                name: "officeNumber",
+            },
+        ])
+        .then((response) => {
+            manager = new Manager(
+                response.name,
+                response.id,
+                response.email,
+                response.officeNumber
+            );
+            employees.push(manager);
+            askAddEmployee();
+        });
+}
 
-function askQuestions(){
+function addEngineer() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "What is this engineer's name?",
+                name: "name",
+            },
+            {
+                type: "input",
+                message: "What is this engineer's employee ID?",
+                name: "id",
+            },
+            {
+                type: "input",
+                message: "What is this engineer's email address?",
+                name: "email",
+            },
+            {
+                type: "input",
+                message: "What is this engineer's GitHub username?",
+                name: "github",
+            },
+        ])
+        .then((response) => {
+            engineer = new Engineer(
+                response.name,
+                response.id,
+                response.email,
+                response.github
+            );
+            employees.push(engineer);
+            askAddEmployee();
+        });
+}
+
+function addIntern() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "What is this intern's name?",
+                name: "name",
+            },
+            {
+                type: "input",
+                message: "What is this intern's employee ID?",
+                name: "id",
+            },
+            {
+                type: "input",
+                message: "What is this intern's email address?",
+                name: "email",
+            },
+            {
+                type: "input",
+                message:
+                    "Which school is this intern attending or what was the last school this intern attended?",
+                name: "school",
+            },
+        ])
+        .then((response) => {
+            intern = new Intern(
+                response.name,
+                response.id,
+                response.email,
+                response.school
+            );
+            employees.push(intern);
+            askAddEmployee();
+        });
+}
+
+function askQuestions() {
     inquirer.prompt(
         [
             {
                 type: "list",
-                message: "What type of team member are you adding to this team?",
+                message: "What type of role are you adding to the team?",
                 name: "selection",
-                choices: ["manager", "engineer", "intern"]
+                choices: ["Manager", "Engineer", "Intern"]
             }
         ]
     )
-    .then((response) => {
-        switch (response.selection) {
-            case "manager":
-            addManager(response);
-            break;
+        .then((response) => {
+            switch (response.selection) {
+                case "Manager":
+                    addManager();
+                    break;
 
-            case "engineer":
-            addEngineer(response);
-            break;
+                case "Engineer":
+                    addEngineer();
+                    break;
 
-            case "intern":
-            addIntern(response);
-            break;
-        }
-        fs.writeFile(
-            "./output/team.html",
-            htmlTemplate(response),
-            "utf-8",
-            (err) => {
-                err ? console.log(err) : console.log("success");
+                case "Intern":
+                    addIntern();
+                    break;
             }
-        );
-    });
+        });
 }
 askQuestions();
 
-
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
+function askAddEmployee() {
+    inquirer.prompt(
+        [
+            {
+                type: "confirm",
+                message: "Would you like to add another employee?",
+                name: "add",
+                default: false
+            }
+        ]
+    )
+        .then((response) => {
+            if (response.add) {
+                askQuestions();
+            } else {
+                fs.writeFile(
+                    "./output/team.html",
+                    render(employees),
+                    "utf-8",
+                    (err) => {
+                        err ? console.log(err) : console.log("success");
+                    }
+                );
+            }
+        });
+}
