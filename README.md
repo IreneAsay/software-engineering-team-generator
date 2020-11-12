@@ -1,8 +1,9 @@
 # Software Engineering Team Generator
-Demo []
 
 ## Project Description 
 The goal of this project is to create a command-line application (a software engineering team generator) that will prompt the user for different types of role to be added to the team followed by specific information pertaining to that role. The user can input any number of team members, and they may be a mix of engineers, interns and a manager. When the user has completed building the team, the application will create an HTML file that displays a nicely formatted team roster based on the information provided by the user. 
+
+![Team Generator] (assets/team_generator_screenshot.png)
 
 ## Table of Content
 
@@ -41,7 +42,7 @@ The application will be invoked by the command `node app.js`. Once the applicati
 
 
 ## Questions
-For your reference, here is a [demo video]() to walk through the entire process of running this app.
+For your reference, here is a [demo video](https://drive.google.com/file/d/17fM5yKZYT_INYx0Dq_b9nLTNhHukrSPL/view) to walk through the entire process of running this app.
 
 More questions? Connect with me and we can chat more!
 
