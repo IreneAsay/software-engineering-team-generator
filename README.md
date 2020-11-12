@@ -46,9 +46,3 @@ Email Address: irene.hsu.asay@gmail.com
 ## License
 
 © Irene Asay. All Rights Reserved. Under the [MIT/](./LICENSE) license.
-
-
-### User input
-
-The project must prompt the user to build an engineering team. An engineering
-team consists of a manager, and any number of engineers and interns.
