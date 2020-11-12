@@ -123,16 +123,16 @@ function addIntern() {
 }
 
 function askQuestions() {
-    inquirer.prompt(
-        [
+    inquirer
+        .prompt([
             {
                 type: "list",
-                message: "What type of role are you adding to the team?",
+                message:
+                    "To begin building an engineering team, please first choose what type of role you are adding to the team?",
                 name: "selection",
-                choices: ["Manager", "Engineer", "Intern"]
-            }
-        ]
-    )
+                choices: ["Manager", "Engineer", "Intern"],
+            },
+        ])
         .then((response) => {
             switch (response.selection) {
                 case "Manager":
