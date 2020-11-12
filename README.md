@@ -6,6 +6,13 @@ The goal of this project is to create a command-line application (a software eng
 
 ## Table of Content
 
+  - [Project Description](#project-description)
+  - [User Story](#user-story)
+  - [Criteria](#criteria)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Questions](#questions)
+  - [License](#license)
 
 ## User Story
 As a manager
