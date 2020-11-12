@@ -3,7 +3,7 @@
 ## Project Description 
 The goal of this project is to create a command-line application (a software engineering team generator) that will prompt the user for different types of role to be added to the team followed by specific information pertaining to that role. The user can input any number of team members, and they may be a mix of engineers, interns and a manager. When the user has completed building the team, the application will create an HTML file that displays a nicely formatted team roster based on the information provided by the user. 
 
-![Screenshot] (assets/screenshot.png)
+![Screenshot](assets/screenshot.png)
 
 ## Table of Content
 
